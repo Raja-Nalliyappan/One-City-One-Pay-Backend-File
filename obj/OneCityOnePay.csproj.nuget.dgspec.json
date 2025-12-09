@@ -54,17 +54,13 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
-            "LVD.Stakhanovise.NET.NetCoreConfigurationExtensionsBindings": {
-              "target": "Package",
-              "version": "[1.0.7, )"
-            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[9.0.10, )"
+              "version": "[8.0.10, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.10, )"
             },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
@@ -72,21 +68,20 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[8.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[8.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[8.0.10, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[6.6.2, )"
             }
           },
           "imports": [

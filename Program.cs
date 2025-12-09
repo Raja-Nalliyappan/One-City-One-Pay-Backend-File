@@ -46,7 +46,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("https://onecity-onepay.onrender.com/") 
+        policy.WithOrigins("https://onecity-onepay.onrender.com") 
               .AllowAnyMethod()
               .AllowAnyHeader();
     });

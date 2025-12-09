@@ -1,5 +1,8 @@
 ﻿using One_City_One_Pay.Data;
 using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text; // Add this using directive for Encoding.UTF8.GetBytes
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,12 +17,36 @@ builder.Services.AddScoped<BookingCountAndAmountRepository>();
 
 builder.Services.AddHttpClient();
 
+
+//JWT Token Configuration
+var key = builder.Configuration["Jwt:Key"] ?? "YourSuperSecretKey12345";
+
+// Fix: Chain AddJwtBearer directly to builder.Services.AddAuthentication
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"] ?? "yourdomain.com",
+        ValidAudience = builder.Configuration["Jwt:Audience"] ?? "yourdomain.com",
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+    };
+});
+
 //Enable CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") 
+        policy.WithOrigins("https://onecity-onepay.onrender.com/") 
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -39,6 +66,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowAll");
+
+app.UseAuthentication();
 
 app.UseHttpsRedirection();
 

@@ -1,13 +1,17 @@
-# Use official .NET SDK image to build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
-COPY . .
+
+# Copy csproj for restore
+COPY OneCityOnePay/*.csproj ./
 RUN dotnet restore
+
+# Copy rest of the files
+COPY OneCityOnePay/. ./
 RUN dotnet publish -c Release -o out
 
-# Build runtime image
+# Runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app/out .
+COPY --from=build /app/out ./
 EXPOSE 8080
-ENTRYPOINT ["dotnet", "One City One Pay.dll"]
+ENTRYPOINT ["dotnet", "OneCityOnePay.dll"]

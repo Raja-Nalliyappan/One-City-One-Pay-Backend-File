@@ -122,5 +122,10 @@ namespace One_City_One_Pay.Data
                 cmd.ExecuteNonQuery();
             }
         }
+
+        internal object GenerateJwtToken(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

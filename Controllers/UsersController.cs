@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BCrypt.Net;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using One_City_One_Pay.Data;
 using One_City_One_Pay.Moduls;
-using BCrypt.Net;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace One_City_One_Pay.Controllers
 {
@@ -10,10 +14,13 @@ namespace One_City_One_Pay.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UserRepository _userRepo;
+        private readonly IConfiguration _config;
 
-        public UsersController(UserRepository userRepo)
+        public UsersController(UserRepository userRepo , IConfiguration config)
         {
             _userRepo = userRepo;
+            _config = config;
+
         }
 
         [HttpPost]
@@ -47,25 +54,48 @@ namespace One_City_One_Pay.Controllers
 
             try
             {
-                var existingUser = _userRepo.GetUserByEmailID(email); // Fetch user from DB by email
+                var existingUser = _userRepo.GetUserByEmailID(email); 
 
                 if (existingUser == null) return NotFound(new { message = "User not found" });
 
-                // Verify the entered password against the stored hash
                 bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, existingUser.Password);
 
                 if (!isPasswordValid)
                 {
                     return Unauthorized(new { message = "Invalid password" });
                 }
+                var token = GenerateJwtToken(existingUser.Email);
 
-                return Ok(new { message = "Login successful - Welcome to Our Page", user = existingUser });
+                return Ok(new { message = "Login successful - Welcome to Our Page", user = existingUser.Name, token = token });
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
             }
         }
+
+
+        private string GenerateJwtToken(string email)
+        {
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Email, email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _config["Jwt:Issuer"],
+                audience: _config["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(2),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
 
 
         [HttpGet("GetRegisterUserList")]

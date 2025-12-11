@@ -1,0 +1,333 @@
+[
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "BookingCountAndAmountAuto",
+    "RelativePath": "api/BookingCountAndAmount/BookingCountAndAmountAuto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "One_City_One_Pay.Moduls.AutoBookingCountAndAmount",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "BookingCountAndAmountBike",
+    "RelativePath": "api/BookingCountAndAmount/BookingCountAndAmountBike",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "One_City_One_Pay.Moduls.BikeBookingCountAndAmount",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "BookingCountAndAmountBus",
+    "RelativePath": "api/BookingCountAndAmount/BookingCountAndAmountBus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "One_City_One_Pay.Moduls.BusBookingCountAndAmount",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "BookingCountAndAmountCar",
+    "RelativePath": "api/BookingCountAndAmount/BookingCountAndAmountCar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "One_City_One_Pay.Moduls.CarBookingCountAndAmount",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "BookingCountAndAmountLocalTrain",
+    "RelativePath": "api/BookingCountAndAmount/BookingCountAndAmountLocalTrain",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "One_City_One_Pay.Moduls.LocalTrainBookingCountAndAmount",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "BookingCountAndAmountMetro",
+    "RelativePath": "api/BookingCountAndAmount/BookingCountAndAmountMetro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "One_City_One_Pay.Moduls.MetroBookingCountAndAmount",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "GetAutoBookingCountAndAmount",
+    "RelativePath": "api/BookingCountAndAmount/GetAutoBookingCountAndAmount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "GetBikeBookingCountAndAmount",
+    "RelativePath": "api/BookingCountAndAmount/GetBikeBookingCountAndAmount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "GetBusBookingCountAndAmount",
+    "RelativePath": "api/BookingCountAndAmount/GetBusBookingCountAndAmount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "GetCarBookingCountAndAmount",
+    "RelativePath": "api/BookingCountAndAmount/GetCarBookingCountAndAmount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "GetLocalTrainBookingCountAndAmount",
+    "RelativePath": "api/BookingCountAndAmount/GetLocalTrainBookingCountAndAmount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.BookingCountAndAmountController",
+    "Method": "GetMetroBookingCountAndAmount",
+    "RelativePath": "api/BookingCountAndAmount/GetMetroBookingCountAndAmount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.ReviewsController",
+    "Method": "AddUserReviewComments",
+    "RelativePath": "api/Reviews/AddUserReviewComments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "reviewComments",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.ReviewsController",
+    "Method": "GetAllUserReviewsComments",
+    "RelativePath": "api/Reviews/GetUserReviewsComments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.RoutesController",
+    "Method": "GetAllAutoRoutes",
+    "RelativePath": "api/Routes/AutoRoute",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.RoutesController",
+    "Method": "GetAllBikeRoutes",
+    "RelativePath": "api/Routes/BikeRoute",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.RoutesController",
+    "Method": "GetAllBusRoutes",
+    "RelativePath": "api/Routes/BusRoute",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.RoutesController",
+    "Method": "GetAllCarRoutes",
+    "RelativePath": "api/Routes/CarRoute",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.RoutesController",
+    "Method": "GetAllLocalTrainRoutes",
+    "RelativePath": "api/Routes/LocalTrainRoute",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.RoutesController",
+    "Method": "GetAllMetroRoutes",
+    "RelativePath": "api/Routes/MetroRoute",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.UsersController",
+    "Method": "Create",
+    "RelativePath": "api/Users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "users",
+        "Type": "One_City_One_Pay.Moduls.LoginUsers",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.UsersController",
+    "Method": "Login",
+    "RelativePath": "api/Users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.UsersController",
+    "Method": "Update",
+    "RelativePath": "api/Users/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "users",
+        "Type": "One_City_One_Pay.Moduls.LoginUsers",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.UsersController",
+    "Method": "GetRegisterUserList",
+    "RelativePath": "api/Users/GetRegisterUserList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "One_City_One_Pay.Controllers.UsersController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Users/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "One_City_One_Pay.Moduls.ResetPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

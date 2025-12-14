@@ -1,4 +1,270 @@
-﻿using Microsoft.Data.SqlClient;
+﻿//using Microsoft.Data.SqlClient;
+//using One_City_One_Pay.Moduls;
+//using System.Data;
+
+//namespace One_City_One_Pay.Data
+//{
+//    public class BookingCountAndAmountRepository
+//    {
+//        private readonly string _connectionString;
+
+//        public BookingCountAndAmountRepository (IConfiguration configuration)
+//        {
+//            _connectionString = configuration.GetConnectionString("DefaultConnection");
+//        }
+
+
+//        // Posting Booking Count And Amount Stored Procedure
+//        public void AddBikeBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+//        {
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("sp_BikeBookingCountAndAmount", connection))
+//            {
+//                cmd.CommandType = CommandType.StoredProcedure;
+//                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
+//                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
+//                cmd.Parameters.AddWithValue("@UserName", userName);
+//                connection.Open();
+//                cmd.ExecuteNonQuery();
+//            }
+//        }
+
+//        public void AddAutoBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+//        {
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("sp_AutoBookingCountAndAmount", connection))
+//            {
+//                cmd.CommandType = CommandType.StoredProcedure;
+//                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
+//                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
+//                cmd.Parameters.AddWithValue("@UserName", userName);
+//                connection.Open();
+//                cmd.ExecuteNonQuery();
+//            }
+//        }
+
+//        public void AddCarBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+//        {
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("sp_CarBookingCountAndAmount", connection))
+//            {
+//                cmd.CommandType = CommandType.StoredProcedure;
+//                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
+//                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
+//                cmd.Parameters.AddWithValue("@UserName", userName);
+//                connection.Open();
+//                cmd.ExecuteNonQuery();
+//            }
+//        }
+
+//        public void AddBusBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+//        {
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("sp_BusBookingCountAndAmount", connection))
+//            {
+//                cmd.CommandType = CommandType.StoredProcedure;
+//                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
+//                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
+//                cmd.Parameters.AddWithValue("@UserName", userName);
+//                connection.Open();
+//                cmd.ExecuteNonQuery();
+//            }
+//        }
+
+//        public void AddMetroBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+//        {
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("sp_MetroBookingCountAndAmount", connection))
+//            {
+//                cmd.CommandType = CommandType.StoredProcedure;
+//                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
+//                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
+//                cmd.Parameters.AddWithValue("@UserName", userName);
+//                connection.Open();
+//                cmd.ExecuteNonQuery();
+//            }
+//        }
+
+//        public void AddLocalTrainBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+//        {
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("sp_LocalTrainBookingCountAndAmount", connection))
+//            {
+//                cmd.CommandType = CommandType.StoredProcedure;
+//                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
+//                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
+//                cmd.Parameters.AddWithValue("@UserName", userName);
+//                connection.Open();
+//                cmd.ExecuteNonQuery();
+//            }
+//        }
+
+
+
+
+
+
+//        //Get all Booking count and amount List Without using SP = used inline for my ref
+//        public IEnumerable<BikeBookingCountAndAmount> GetBikeBookingCountAndAmount()
+//        {
+//            var bikeBookingData = new List<BikeBookingCountAndAmount>();
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM BikeBookingCountAndAmount", connection))
+//            {
+//                connection.Open();
+//                using (SqlDataReader reader = cmd.ExecuteReader())
+//                {
+//                    while (reader.Read())
+//                    {
+//                        bikeBookingData.Add(new BikeBookingCountAndAmount
+//                        {
+//                            Id = Convert.ToInt32(reader["Id"]),
+//                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
+//                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
+//                            VehicleType = reader["VehicleType"].ToString(),
+//                            UserName = reader["UserName"].ToString()
+//                        });
+//                    }
+//                }
+//            }
+//            return bikeBookingData;
+//        }
+
+//        public IEnumerable<AutoBookingCountAndAmount> GetAutoBookingCountAndAmount()
+//        {
+//            var autoBookingData = new List<AutoBookingCountAndAmount>();
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM AutoBookingCountAndAmount", connection))
+//            {
+//                connection.Open();
+//                using (SqlDataReader reader = cmd.ExecuteReader())
+//                {
+//                    while (reader.Read())
+//                    {
+//                        autoBookingData.Add(new AutoBookingCountAndAmount
+//                        {
+//                            Id = Convert.ToInt32(reader["Id"]),
+//                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
+//                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
+//                            VehicleType = reader["VehicleType"].ToString(),
+//                            UserName = reader["UserName"].ToString()
+//                        });
+//                    }
+//                }
+//            }
+//            return autoBookingData;
+//        }
+
+//        public IEnumerable<CarBookingCountAndAmount> GetCarBookingCountAndAmount()
+//        {
+//            var carBookingData = new List<CarBookingCountAndAmount>();
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM CarBookingCountAndAmount", connection))
+//            {
+//                connection.Open();
+//                using (SqlDataReader reader = cmd.ExecuteReader())
+//                {
+//                    while (reader.Read())
+//                    {
+//                        carBookingData.Add(new CarBookingCountAndAmount
+//                        {
+//                            Id = Convert.ToInt32(reader["Id"]),
+//                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
+//                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
+//                            VehicleType = reader["VehicleType"].ToString(),
+//                            UserName = reader["UserName"].ToString()
+//                        });
+//                    }
+//                }
+//            }
+//            return carBookingData;
+//        }
+
+//        public IEnumerable<BusBookingCountAndAmount> GetBusBookingCountAndAmount()
+//        {
+//            var busBookingData = new List<BusBookingCountAndAmount>();
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM BusBookingCountAndAmount", connection))
+//            {
+//                connection.Open();
+//                using (SqlDataReader reader = cmd.ExecuteReader())
+//                {
+//                    while (reader.Read())
+//                    {
+//                        busBookingData.Add(new BusBookingCountAndAmount
+//                        {
+//                            Id = Convert.ToInt32(reader["Id"]),
+//                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
+//                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
+//                            VehicleType = reader["VehicleType"].ToString(),
+//                            UserName = reader["UserName"].ToString()
+//                        });
+//                    }
+//                }
+//            }
+//            return busBookingData;
+//        }
+
+//        public IEnumerable<MetroBookingCountAndAmount> GetMetroBookingCountAndAmount()
+//        {
+//            var metroBookingData = new List<MetroBookingCountAndAmount>();
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM MetroBookingCountAndAmount", connection))
+//            {
+//                connection.Open();
+//                using (SqlDataReader reader = cmd.ExecuteReader())
+//                {
+//                    while (reader.Read())
+//                    {
+//                        metroBookingData.Add(new MetroBookingCountAndAmount
+//                        {
+//                            Id = Convert.ToInt32(reader["Id"]),
+//                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
+//                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
+//                            VehicleType = reader["VehicleType"].ToString(),
+//                            UserName = reader["UserName"].ToString()
+//                        });
+//                    }
+//                }
+//            }
+//            return metroBookingData;
+//        }
+
+//        public IEnumerable<LocalTrainBookingCountAndAmount> GetLocalTrainBookingCountAndAmount()
+//        {
+//            var localTrainBookingData = new List<LocalTrainBookingCountAndAmount>();
+//            using (SqlConnection connection = new SqlConnection(_connectionString))
+//            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM LocalTrainBookingCountAndAmount", connection))
+//            {
+//                connection.Open();
+//                using (SqlDataReader reader = cmd.ExecuteReader())
+//                {
+//                    while (reader.Read())
+//                    {
+//                        localTrainBookingData.Add(new LocalTrainBookingCountAndAmount
+//                        {
+//                            Id = Convert.ToInt32(reader["Id"]),
+//                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
+//                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
+//                            VehicleType = reader["VehicleType"].ToString(),
+//                            UserName = reader["UserName"].ToString()
+//                        });
+//                    }
+//                }
+//            }
+//            return localTrainBookingData;
+//        }
+//    }
+//}
+
+
+
+
+
+
+//postersql
+
+using Npgsql;
 using One_City_One_Pay.Moduls;
 using System.Data;
 
@@ -8,251 +274,370 @@ namespace One_City_One_Pay.Data
     {
         private readonly string _connectionString;
 
-        public BookingCountAndAmountRepository (IConfiguration configuration)
+        public BookingCountAndAmountRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
+        // ----------------------------- POSTING (USING SP) -----------------------------
 
-        // Posting Booking Count And Amount Stored Procedure
-        public void AddBikeBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+        public void AddBikeBookingCountAndAmount(decimal bookingAmount, string vehicleType, string userName)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("sp_BikeBookingCountAndAmount", connection))
+            using var connection = new NpgsqlConnection(_connectionString);
+            using var cmd = new NpgsqlCommand("sp_AddBikeBookingCountAndAmount", connection)
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
-                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
-                cmd.Parameters.AddWithValue("@UserName", userName);
-                connection.Open();
-                cmd.ExecuteNonQuery();
-            }
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.AddWithValue("p_bookingamount", bookingAmount);
+            cmd.Parameters.AddWithValue("p_vehicletype", vehicleType);
+            cmd.Parameters.AddWithValue("p_username", userName);
+            connection.Open();
+            cmd.ExecuteNonQuery();
         }
 
-        public void AddAutoBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+        public void AddAutoBookingCountAndAmount(decimal bookingAmount, string vehicleType, string userName)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("sp_AutoBookingCountAndAmount", connection))
+            using var connection = new NpgsqlConnection(_connectionString);
+            using var cmd = new NpgsqlCommand("sp_AddAutoBookingCountAndAmount", connection)
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
-                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
-                cmd.Parameters.AddWithValue("@UserName", userName);
-                connection.Open();
-                cmd.ExecuteNonQuery();
-            }
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.AddWithValue("p_bookingamount", bookingAmount);
+            cmd.Parameters.AddWithValue("p_vehicletype", vehicleType);
+            cmd.Parameters.AddWithValue("p_username", userName);
+            connection.Open();
+            cmd.ExecuteNonQuery();
         }
 
-        public void AddCarBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+        public void AddCarBookingCountAndAmount(decimal bookingAmount, string vehicleType, string userName)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("sp_CarBookingCountAndAmount", connection))
+            using var connection = new NpgsqlConnection(_connectionString);
+            using var cmd = new NpgsqlCommand("sp_AddCarBookingCountAndAmount", connection)
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
-                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
-                cmd.Parameters.AddWithValue("@UserName", userName);
-                connection.Open();
-                cmd.ExecuteNonQuery();
-            }
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.AddWithValue("p_bookingamount", bookingAmount);
+            cmd.Parameters.AddWithValue("p_vehicletype", vehicleType);
+            cmd.Parameters.AddWithValue("p_username", userName);
+            connection.Open();
+            cmd.ExecuteNonQuery();
         }
 
-        public void AddBusBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+        public void AddBusBookingCountAndAmount(decimal bookingAmount, string vehicleType, string userName)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("sp_BusBookingCountAndAmount", connection))
+            using var connection = new NpgsqlConnection(_connectionString);
+            using var cmd = new NpgsqlCommand("sp_AddBusBookingCountAndAmount", connection)
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
-                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
-                cmd.Parameters.AddWithValue("@UserName", userName);
-                connection.Open();
-                cmd.ExecuteNonQuery();
-            }
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.AddWithValue("p_bookingamount", bookingAmount);
+            cmd.Parameters.AddWithValue("p_vehicletype", vehicleType);
+            cmd.Parameters.AddWithValue("p_username", userName);
+            connection.Open();
+            cmd.ExecuteNonQuery();
         }
 
-        public void AddMetroBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+        public void AddMetroBookingCountAndAmount(decimal bookingAmount, string vehicleType, string userName)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("sp_MetroBookingCountAndAmount", connection))
+            using var connection = new NpgsqlConnection(_connectionString);
+            using var cmd = new NpgsqlCommand("sp_AddMetroBookingCountAndAmount", connection)
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
-                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
-                cmd.Parameters.AddWithValue("@UserName", userName);
-                connection.Open();
-                cmd.ExecuteNonQuery();
-            }
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.AddWithValue("p_bookingamount", bookingAmount);
+            cmd.Parameters.AddWithValue("p_vehicletype", vehicleType);
+            cmd.Parameters.AddWithValue("p_username", userName);
+            connection.Open();
+            cmd.ExecuteNonQuery();
         }
 
-        public void AddLocalTrainBookingCountAndAmount(decimal bookingAmount, string VehicleType, string userName)
+        public void AddLocalTrainBookingCountAndAmount(decimal bookingAmount, string vehicleType, string userName)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("sp_LocalTrainBookingCountAndAmount", connection))
+            using var connection = new NpgsqlConnection(_connectionString);
+            using var cmd = new NpgsqlCommand("sp_AddLocalTrainBookingCountAndAmount", connection)
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookingAmount", bookingAmount);
-                cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
-                cmd.Parameters.AddWithValue("@UserName", userName);
-                connection.Open();
-                cmd.ExecuteNonQuery();
-            }
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.AddWithValue("p_bookingamount", bookingAmount);
+            cmd.Parameters.AddWithValue("p_vehicletype", vehicleType);
+            cmd.Parameters.AddWithValue("p_username", userName);
+            connection.Open();
+            cmd.ExecuteNonQuery();
         }
 
+        // ----------------------------- GET LIST (USING SP) -----------------------------
 
-
-
-
-
-        //Get all Booking count and amount List Without using SP = used inline for my ref
         public IEnumerable<BikeBookingCountAndAmount> GetBikeBookingCountAndAmount()
         {
             var bikeBookingData = new List<BikeBookingCountAndAmount>();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM BikeBookingCountAndAmount", connection))
+
+            using var connection = new NpgsqlConnection(_connectionString);
+            connection.Open();
+
+            using var transaction = connection.BeginTransaction();
+
+            // 1️⃣ Call stored procedure
+            using (var cmd = new NpgsqlCommand(
+                "CALL sp_GetBikeBookingCountAndAmount(@ref)", connection, transaction))
             {
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                cmd.Parameters.Add(new NpgsqlParameter("ref", NpgsqlTypes.NpgsqlDbType.Refcursor)
                 {
-                    while (reader.Read())
+                    Direction = ParameterDirection.InputOutput,
+                    Value = "bike_cursor"
+                });
+
+                cmd.ExecuteNonQuery();
+            }
+
+            // 2️⃣ Fetch data from cursor
+            using (var fetchCmd = new NpgsqlCommand(
+                "FETCH ALL FROM bike_cursor", connection, transaction))
+            using (var reader = fetchCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    bikeBookingData.Add(new BikeBookingCountAndAmount
                     {
-                        bikeBookingData.Add(new BikeBookingCountAndAmount
-                        {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
-                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
-                            VehicleType = reader["VehicleType"].ToString(),
-                            UserName = reader["UserName"].ToString()
-                        });
-                    }
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        BookingAmount = reader.GetDecimal(reader.GetOrdinal("bookingamount")),
+                        BookingDate = reader.IsDBNull(reader.GetOrdinal("bookingdate"))
+                            ? null
+                            : reader.GetDateTime(reader.GetOrdinal("bookingdate")),
+                        VehicleType = reader.GetString(reader.GetOrdinal("vehicletype")),
+                        UserName = reader.GetString(reader.GetOrdinal("username"))
+                    });
                 }
             }
+
+            transaction.Commit();
             return bikeBookingData;
         }
+
 
         public IEnumerable<AutoBookingCountAndAmount> GetAutoBookingCountAndAmount()
         {
             var autoBookingData = new List<AutoBookingCountAndAmount>();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM AutoBookingCountAndAmount", connection))
+
+            using var connection = new NpgsqlConnection(_connectionString);
+            connection.Open();
+
+            using var transaction = connection.BeginTransaction();
+
+            using (var cmd = new NpgsqlCommand(
+                "CALL sp_GetAutoBookingCountAndAmount(@ref)", connection, transaction))
             {
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                cmd.Parameters.Add(new NpgsqlParameter("ref", NpgsqlTypes.NpgsqlDbType.Refcursor)
                 {
-                    while (reader.Read())
+                    Direction = ParameterDirection.InputOutput,
+                    Value = "auto_cursor"
+                });
+
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var fetchCmd = new NpgsqlCommand(
+                "FETCH ALL FROM auto_cursor", connection, transaction))
+            using (var reader = fetchCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    autoBookingData.Add(new AutoBookingCountAndAmount
                     {
-                        autoBookingData.Add(new AutoBookingCountAndAmount
-                        {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
-                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
-                            VehicleType = reader["VehicleType"].ToString(),
-                            UserName = reader["UserName"].ToString()
-                        });
-                    }
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        BookingAmount = reader.GetDecimal(reader.GetOrdinal("bookingamount")),
+                        BookingDate = reader.IsDBNull(reader.GetOrdinal("bookingdate"))
+                            ? null
+                            : reader.GetDateTime(reader.GetOrdinal("bookingdate")),
+                        VehicleType = reader.GetString(reader.GetOrdinal("vehicletype")),
+                        UserName = reader.GetString(reader.GetOrdinal("username"))
+                    });
                 }
             }
+
+            transaction.Commit();
             return autoBookingData;
         }
+
 
         public IEnumerable<CarBookingCountAndAmount> GetCarBookingCountAndAmount()
         {
             var carBookingData = new List<CarBookingCountAndAmount>();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM CarBookingCountAndAmount", connection))
+
+            using var connection = new NpgsqlConnection(_connectionString);
+            connection.Open();
+
+            using var transaction = connection.BeginTransaction();
+
+            using (var cmd = new NpgsqlCommand(
+                "CALL sp_GetCarBookingCountAndAmount(@ref)", connection, transaction))
             {
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                cmd.Parameters.Add(new NpgsqlParameter("ref", NpgsqlTypes.NpgsqlDbType.Refcursor)
                 {
-                    while (reader.Read())
+                    Direction = ParameterDirection.InputOutput,
+                    Value = "car_cursor"
+                });
+
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var fetchCmd = new NpgsqlCommand(
+                "FETCH ALL FROM car_cursor", connection, transaction))
+            using (var reader = fetchCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    carBookingData.Add(new CarBookingCountAndAmount
                     {
-                        carBookingData.Add(new CarBookingCountAndAmount
-                        {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
-                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
-                            VehicleType = reader["VehicleType"].ToString(),
-                            UserName = reader["UserName"].ToString()
-                        });
-                    }
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        BookingAmount = reader.GetDecimal(reader.GetOrdinal("bookingamount")),
+                        BookingDate = reader.IsDBNull(reader.GetOrdinal("bookingdate"))
+                            ? null
+                            : reader.GetDateTime(reader.GetOrdinal("bookingdate")),
+                        VehicleType = reader.GetString(reader.GetOrdinal("vehicletype")),
+                        UserName = reader.GetString(reader.GetOrdinal("username"))
+                    });
                 }
             }
+
+            transaction.Commit();
             return carBookingData;
         }
+
+
 
         public IEnumerable<BusBookingCountAndAmount> GetBusBookingCountAndAmount()
         {
             var busBookingData = new List<BusBookingCountAndAmount>();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM BusBookingCountAndAmount", connection))
+
+            using var connection = new NpgsqlConnection(_connectionString);
+            connection.Open();
+
+            using var transaction = connection.BeginTransaction();
+
+            using (var cmd = new NpgsqlCommand(
+                "CALL sp_GetBusBookingCountAndAmount(@ref)", connection, transaction))
             {
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                cmd.Parameters.Add(new NpgsqlParameter("ref", NpgsqlTypes.NpgsqlDbType.Refcursor)
                 {
-                    while (reader.Read())
+                    Direction = ParameterDirection.InputOutput,
+                    Value = "bus_cursor"
+                });
+
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var fetchCmd = new NpgsqlCommand(
+                "FETCH ALL FROM bus_cursor", connection, transaction))
+            using (var reader = fetchCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    busBookingData.Add(new BusBookingCountAndAmount
                     {
-                        busBookingData.Add(new BusBookingCountAndAmount
-                        {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
-                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
-                            VehicleType = reader["VehicleType"].ToString(),
-                            UserName = reader["UserName"].ToString()
-                        });
-                    }
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        BookingAmount = reader.GetDecimal(reader.GetOrdinal("bookingamount")),
+                        BookingDate = reader.IsDBNull(reader.GetOrdinal("bookingdate"))
+                            ? null
+                            : reader.GetDateTime(reader.GetOrdinal("bookingdate")),
+                        VehicleType = reader.GetString(reader.GetOrdinal("vehicletype")),
+                        UserName = reader.GetString(reader.GetOrdinal("username"))
+                    });
                 }
             }
+
+            transaction.Commit();
             return busBookingData;
         }
+
 
         public IEnumerable<MetroBookingCountAndAmount> GetMetroBookingCountAndAmount()
         {
             var metroBookingData = new List<MetroBookingCountAndAmount>();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM MetroBookingCountAndAmount", connection))
+
+            using var connection = new NpgsqlConnection(_connectionString);
+            connection.Open();
+
+            using var transaction = connection.BeginTransaction();
+
+            using (var cmd = new NpgsqlCommand(
+                "CALL sp_GetMetroBookingCountAndAmount(@ref)", connection, transaction))
             {
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                cmd.Parameters.Add(new NpgsqlParameter("ref", NpgsqlTypes.NpgsqlDbType.Refcursor)
                 {
-                    while (reader.Read())
+                    Direction = ParameterDirection.InputOutput,
+                    Value = "metro_cursor"
+                });
+
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var fetchCmd = new NpgsqlCommand(
+                "FETCH ALL FROM metro_cursor", connection, transaction))
+            using (var reader = fetchCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    metroBookingData.Add(new MetroBookingCountAndAmount
                     {
-                        metroBookingData.Add(new MetroBookingCountAndAmount
-                        {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
-                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
-                            VehicleType = reader["VehicleType"].ToString(),
-                            UserName = reader["UserName"].ToString()
-                        });
-                    }
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        BookingAmount = reader.GetDecimal(reader.GetOrdinal("bookingamount")),
+                        BookingDate = reader.IsDBNull(reader.GetOrdinal("bookingdate"))
+                            ? null
+                            : reader.GetDateTime(reader.GetOrdinal("bookingdate")),
+                        VehicleType = reader.GetString(reader.GetOrdinal("vehicletype")),
+                        UserName = reader.GetString(reader.GetOrdinal("username"))
+                    });
                 }
             }
+
+            transaction.Commit();
             return metroBookingData;
         }
+
 
         public IEnumerable<LocalTrainBookingCountAndAmount> GetLocalTrainBookingCountAndAmount()
         {
             var localTrainBookingData = new List<LocalTrainBookingCountAndAmount>();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT Id, BookingAmount, BookingDate,VehicleType,UserName FROM LocalTrainBookingCountAndAmount", connection))
+
+            using var connection = new NpgsqlConnection(_connectionString);
+            connection.Open();
+
+            using var transaction = connection.BeginTransaction();
+
+            using (var cmd = new NpgsqlCommand(
+                "CALL sp_GetLocalTrainBookingCountAndAmount(@ref)", connection, transaction))
             {
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                cmd.Parameters.Add(new NpgsqlParameter("ref", NpgsqlTypes.NpgsqlDbType.Refcursor)
                 {
-                    while (reader.Read())
+                    Direction = ParameterDirection.InputOutput,
+                    Value = "localtrain_cursor"
+                });
+
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var fetchCmd = new NpgsqlCommand(
+                "FETCH ALL FROM localtrain_cursor", connection, transaction))
+            using (var reader = fetchCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    localTrainBookingData.Add(new LocalTrainBookingCountAndAmount
                     {
-                        localTrainBookingData.Add(new LocalTrainBookingCountAndAmount
-                        {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            BookingAmount = Convert.ToInt32(reader["BookingAmount"]),
-                            BookingDate = Convert.ToDateTime(reader["BookingDate"]),
-                            VehicleType = reader["VehicleType"].ToString(),
-                            UserName = reader["UserName"].ToString()
-                        });
-                    }
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        BookingAmount = reader.GetDecimal(reader.GetOrdinal("bookingamount")),
+                        BookingDate = reader.IsDBNull(reader.GetOrdinal("bookingdate"))
+                            ? null
+                            : reader.GetDateTime(reader.GetOrdinal("bookingdate")),
+                        VehicleType = reader.GetString(reader.GetOrdinal("vehicletype")),
+                        UserName = reader.GetString(reader.GetOrdinal("username"))
+                    });
                 }
             }
+
+            transaction.Commit();
             return localTrainBookingData;
         }
+
     }
 }

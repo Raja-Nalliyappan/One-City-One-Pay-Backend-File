@@ -59,7 +59,6 @@
 
 using Npgsql;
 using One_City_One_Pay.Moduls;
-using System.Data;
 
 namespace One_City_One_Pay.Data
 {
@@ -70,58 +69,52 @@ namespace One_City_One_Pay.Data
         public RoutesRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection")
-                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+                ?? throw new InvalidOperationException("Connection string not found.");
         }
 
-        private List<T> GetAllRoutesFromSP<T>(string spName) where T : BaseRoute, new()
+        private List<T> GetAllRoutesFromFunction<T>(string functionName) where T : BaseRoute, new()
         {
-            List<T> routes = new List<T>();
+            var routes = new List<T>();
 
-            using (var connection = new NpgsqlConnection(_connectionString))
+            using var connection = new NpgsqlConnection(_connectionString);
+            connection.Open();
+
+            using var cmd = new NpgsqlCommand(
+                $"SELECT * FROM {functionName}()", connection);
+
+            using var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
             {
-                connection.Open();
-
-                using (var transaction = connection.BeginTransaction())
-                using (var cmd = new NpgsqlCommand(spName, connection, transaction))
+                routes.Add(new T
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    // Create a cursor parameter
-                    var refCursor = cmd.Parameters.Add("ref", NpgsqlTypes.NpgsqlDbType.Refcursor);
-                    refCursor.Direction = ParameterDirection.InputOutput;
-                    refCursor.Value = "mycursor";
-
-                    cmd.ExecuteNonQuery();
-
-                    // Fetch all from the cursor
-                    using (var fetchCmd = new NpgsqlCommand("FETCH ALL FROM mycursor;", connection, transaction))
-                    using (var reader = fetchCmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            routes.Add(new T
-                            {
-                                RouteId = reader.GetInt32(reader.GetOrdinal("routeid")),
-                                FromLocation = reader.GetString(reader.GetOrdinal("fromlocation")),
-                                ToLocation = reader.GetString(reader.GetOrdinal("tolocation")),
-                                Price = reader.GetDecimal(reader.GetOrdinal("price"))
-                            });
-                        }
-                    }
-
-                    transaction.Commit();
-                }
+                    RouteId = reader.GetInt32(reader.GetOrdinal("routeid")),
+                    FromLocation = reader.GetString(reader.GetOrdinal("fromlocation")),
+                    ToLocation = reader.GetString(reader.GetOrdinal("tolocation")),
+                    Price = reader.GetDecimal(reader.GetOrdinal("price"))
+                });
             }
 
             return routes;
         }
 
-        // SP mappings
-        public List<BikeRoute> GetAllBikeRoutes() => GetAllRoutesFromSP<BikeRoute>("sp_getallbikeroutes");
-        public List<AutoRoute> GetAllAutoRoutes() => GetAllRoutesFromSP<AutoRoute>("sp_getallautoroutes");
-        public List<CarRoute> GetAllCarRoutes() => GetAllRoutesFromSP<CarRoute>("sp_getallcarroutes");
-        public List<BusRoute> GetAllBusRoutes() => GetAllRoutesFromSP<BusRoute>("sp_getallbusroutes");
-        public List<MetroRoute> GetAllMetroRoutes() => GetAllRoutesFromSP<MetroRoute>("sp_getallmetroroutes");
-        public List<LocalTrainRoute> GetAllLocalTrainRoutes() => GetAllRoutesFromSP<LocalTrainRoute>("sp_getalllocaltrainroutes");
+        // ✅ PostgreSQL FUNCTIONS
+        public List<BikeRoute> GetAllBikeRoutes()
+            => GetAllRoutesFromFunction<BikeRoute>("fn_getallbikeroutes");
+
+        public List<AutoRoute> GetAllAutoRoutes()
+            => GetAllRoutesFromFunction<AutoRoute>("fn_getallautoroutes");
+
+        public List<CarRoute> GetAllCarRoutes()
+            => GetAllRoutesFromFunction<CarRoute>("fn_getallcarroutes");
+
+        public List<BusRoute> GetAllBusRoutes()
+            => GetAllRoutesFromFunction<BusRoute>("fn_getallbusroutes");
+
+        public List<MetroRoute> GetAllMetroRoutes()
+            => GetAllRoutesFromFunction<MetroRoute>("fn_getallmetroroutes");
+
+        public List<LocalTrainRoute> GetAllLocalTrainRoutes()
+            => GetAllRoutesFromFunction<LocalTrainRoute>("fn_getalllocaltrainroutes");
     }
 }
